@@ -9359,10 +9359,10 @@ use@^3.1.0:
   resolved "https://registry.npmjs.org/use/-/use-3.1.1.tgz"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
 
-user-identity-tracker@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/user-identity-tracker/-/user-identity-tracker-1.1.2.tgz#b38c0791f3bd8140852e5233eb0e031e070b7433"
-  integrity sha512-znt52/eogiBXvif+3NV055f0mh7u57Gz+sY4+1Wpn9wGwI42+JPzTarxRTbnbiFw5RXE6HjNZgasSdHyAoYm/A==
+user-identity-tracker@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/user-identity-tracker/-/user-identity-tracker-1.1.4.tgz#cf96dbe8a74a0420f34912e4d5850296a2e350ea"
+  integrity sha512-lFvXAxLr89dlsFb3wT7t453QhxjUGVemr5gqYKjBfzwZ9gwlKC9zQCZkYZmIYIVrfjGGWOQTuEQudZ/MAwN/gg==
 
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"

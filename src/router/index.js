@@ -1,13 +1,11 @@
 import { canNavigate } from '@/plugins/acl/routeProtection'
 import store from '@/store'
 
-// import axios from 'axios' // SERVIDOR
 import { mdiAccountGroup, mdiBasketball, mdiBasketballHoopOutline, mdiSoccer, mdiTennis, mdiTennisBall } from '@mdi/js'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { addDoc, collection, firestore, getDocs, orderBy, query, where } from '../firebase'
 
-// import { accessControl, calculateProbabilities, getSessions, improveUserExperience } from '../_helpers'
 import { accessControl, calculateProbabilities, getSessions, improveUserExperience } from 'user-identity-tracker'
 
 import myViews from './myViews'
@@ -91,6 +89,9 @@ const mostProbableRoutesArray = [] // Declara y inicializa el array para las rut
 // Variable global para almacenar los paths de navegación
 const navigationPaths = {}
 
+const porcentajeArray = [25, 50, 75, 100] // Array que define el porcentaje de sesiones a leer
+const porcentaje = porcentajeArray[1] // Elegimos el porcentaje deseado
+
 // ? Router Before Each hook: https://router.vuejs.org/guide/advanced/navigation-guards.html
 router.beforeEach(async (to, _, next) => {
   // lo he envuelvo en asyc para usar el await
@@ -170,13 +171,11 @@ router.beforeEach(async (to, _, next) => {
 
   // Llama a la función getSessions y calculateProbabilities solo si las probabilidades aún no se han calculado
   if (!probabilityMatrix) {
-    getSessions(firestore, collection, getDocs, orderBy, query, where, userId, sessionId).then(navigationArray => {
+    getSessions(firestore, collection, getDocs, orderBy, query, where, userId, sessionId, porcentaje).then(navigationArray => {
       // Llama a calculateProbabilities solo si hay documentos de navegación disponibles
       console.log(navigationArray.length)
       if (navigationArray.length > 0) {
         probabilityMatrix = calculateProbabilities(navigationArray)
-
-        // probabilitiesCalculated = true // Actualiza la bandera para indicar que las probabilidades ya se han calculado
       }
     })
   }
@@ -197,7 +196,6 @@ router.beforeEach(async (to, _, next) => {
       )
 
       // Obtenemos vistas dinámicas
-      // const dynamicViews = showDynamicRoutes(mostProbableRoutes)
       const dynamicViews = [] // Array de botones dinámicos a mostrar
 
       // Lógica para decidir si se muestran los botones
